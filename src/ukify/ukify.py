@@ -966,7 +966,7 @@ def pe_add_sections(opts: UkifyConfig, uki: UKI, output: str) -> None:
     # SizeOfHeaders to a multiple of the file alignment. This is safe because the first section's data starts
     # at a multiple of the file alignment, so all space before that is unused.
     pe.OPTIONAL_HEADER.SizeOfHeaders = round_up(
-        pe.OPTIONAL_HEADER.SizeOfHeaders, pe.OPTIONAL_HEADER.FileAlignment
+        pe.OPTIONAL_HEADER.SizeOfHeaders + 0x2000, pe.OPTIONAL_HEADER.FileAlignment
     )
     pe = pefile.PE(data=pe.write(), fast_load=True)
 
